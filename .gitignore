@@ -1,15 +1,12 @@
 # System
 .DS_Store
 
-node_modules
-node_modules/
-
-# Build files
-dist
-
 # Bazel
 .ijwb/
 bazel-*
 
-build/
+# Build files
+dist
+node_modules
+node_modules/
 

@@ -27,8 +27,7 @@ It is weirdly satisfying to be able to reuse codes across multiple languages. In
 
 
 ## Bonus features
-- Use [rule_gitops](https://github.com/adobe/rules_gitops) to connect docker images and deployment files. See an [example](deployment/helloworld/README.md) of deployment.
-
+- [rule_gitops](https://github.com/adobe/rules_gitops) is used to connect docker images and deployment files. See an [example](deployment/helloworld/README.md) of deployment.
 
 
 ## Fun next steps to add:

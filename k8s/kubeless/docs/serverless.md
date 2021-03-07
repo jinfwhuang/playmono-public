@@ -4,5 +4,3 @@ https://www.infoworld.com/article/3510472/5-ways-to-do-serverless-on-kubernetes.
 
 fission, knative, kubeles, openfaas, openwhisk
 
-
-
