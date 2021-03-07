@@ -5,12 +5,7 @@
 
 directories:
   .
-  -bazel-bin
-  -bazel-genfiles
-  -bazel-out
-  -bazel-playmono
-  -bazel-testlogs
-  -atmp
+  -bazel-*
   -.git
 
 targets:

@@ -3,11 +3,11 @@ load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 package(default_visibility = ["//visibility:public"])
 
 java_binary(
-    name = "app1",
+    name = "binary",
     srcs = glob([
         "*.java",
     ]),
-    main_class = "github.com.jinfwhuang.cmd.App1",
+    main_class = "github.com.jinfwhuang.cmd.app1.App1",
     deps = [
         "@maven//:com_beust_jcommander",
         "@maven//:org_slf4j_slf4j_api",

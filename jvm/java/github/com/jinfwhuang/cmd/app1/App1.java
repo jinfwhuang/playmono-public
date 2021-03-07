@@ -1,4 +1,4 @@
-package github.com.jinfwhuang.cmd;
+package github.com.jinfwhuang.cmd.app1;
 
 import github.com.jinfwhuang.common.unsorted.AppConfig;
 import org.slf4j.Logger;

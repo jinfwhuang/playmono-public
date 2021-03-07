@@ -1,7 +1,6 @@
 
-# Updating maven_install.json
+# One time creation of maven_install.json
 bazel run @maven//:pin
-
 
 
 # Updating maven_install.json

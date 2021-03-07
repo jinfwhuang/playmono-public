@@ -8,7 +8,7 @@
 - All in Bazel
 
 
-## Language support
+## Examples
 
 Bazel has varying degree of support different languages. One of the best example is go. It allows us to maintain almost all of the features of the native go build tool in the form of the `go` cli. However, not all languages have a native build tool. In the example of Java, building with Bazel is far better than the other tools.
 
@@ -25,6 +25,12 @@ It is weirdly satisfying to be able to reuse codes across multiple languages. In
 
 
 #### go
+The best part of using go in Bazel is that go tooling remains more or less intact. The `golang` directory setup is the same as any other go project. The advantages of using Bazel instead of go build tool are still many: incremental builds, exact control of what goes into libraries, and docker images building.
+
+See [golang readme](golang/README.md).
+
+
+#### java
 The best part of using go in Bazel is that go tooling remains more or less intact. The `golang` directory setup is the same as any other go project. The advantages of using Bazel instead of go build tool are still many: incremental builds, exact control of what goes into libraries, and docker images building.
 
 See [golang readme](golang/README.md).

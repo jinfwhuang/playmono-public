@@ -1,4 +1,4 @@
-package github.com.jinfwhuang.cmd;
+package github.com.jinfwhuang.cmd.app1;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
