@@ -1,5 +1,3 @@
-
-
 import requests
 import sys
 import platform
@@ -26,10 +24,5 @@ import hellolib
 
 hellolib.run()
 
-# time.sleep(1)
 
-
-
-# print("Sleeping ....")
-# time.sleep(100000)
 

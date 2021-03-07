@@ -18,7 +18,7 @@ py_library(
     deps = [
         requirement("termcolor"),
     ],
-    # This is important
+    # This is important.
     # It exposes the correct import path to the consumer of this library
     imports = [
         "."

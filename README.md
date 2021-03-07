@@ -29,22 +29,26 @@ The best part of using go in Bazel is that go tooling remains more or less intac
 
 See [golang readme](golang/README.md).
 
-
 #### java
-Bazel offers excellent support for Java. The [maven rule]](https://github.com/bazelbuild/rules_jvm_external) has made using Maven dependencies really easy. For any large java project, Bazel offers a far better experience than Maven. Even as my personal playground, setting up Bazel in Java has avoid a lot of versioning and library dependencies issues. All of my java codes have been converted to Bazel builds. Even codes that are more than 10 years work well with new Java codes I am writing. It has been a joy to finally standardize and revive all of codes that are placed in their own isolated corners.
+Bazel offers excellent support for Java. The [maven rule](https://github.com/bazelbuild/rules_jvm_external) has made using Maven dependencies really easy. For any large java project, Bazel offers a far better experience than Maven. Even as my personal playground, setting up Bazel in Java has avoid a lot of versioning and library dependencies issues. All of my java codes have been converted to Bazel builds. Even codes that are more than 10 years work well with new Java codes I am writing. It has been a joy to finally standardize and revive all of codes that are placed in their own isolated corners.
 
-See [java examples](jvm/README.md).
+See [java examples](jvm/README.md). All java third party dependencies are listed in a [single location](jvm/skylib/repositories.bzl).
 
 
 #### python
-TODO
+Instead of using virtual envs, Bazel allows us to defind and build python interpreter as part of its toolchain.
+
+See [python examples](jvm/README.md). All python third party dependencies are listed in a [single location](python/skylib/requirements.txt).
 
 
 #### nodejs
 TODO
 
-## Bonus features
-- [rule_gitops](https://github.com/adobe/rules_gitops) is used to connect docker images and deployment files. See an [example](deployment/helloworld/README.md) of deployment.
+
+## Docker Images and Deloyment Manifest
+Bazel [rules_docker](https://github.com/bazelbuild/rules_docker) makes the transition from building binaries to images rather seamless. When a binary is already built by Bazel, creating an equivalent [distroless](https://github.com/GoogleContainerTools/distroless) image is too easy. Furthermore [rule_gitops](https://github.com/adobe/rules_gitops) is used to connect docker images and deployment files. See an [example](deployment/helloworld/README.md) of deployment.
+
+While this feature is not used very often in my personal playground, I do use it to deploy personal projects. I keep a tiny k8s cluster up running in AWS, costing me about $30-$50 a month. I previously had some long running services that I ran in EC2, converting them into k8s deployment covered my operating costs. Now that is setup, instead of having to deal with terraform to deploy some toy projects, I deploy to my personal k8s cluster by one bazel command. It is a ton of fun to write and deploy without having to think about infra.
 
 
 ## Fun next steps to add:

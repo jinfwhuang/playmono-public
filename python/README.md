@@ -1,8 +1,11 @@
-# TODOs
+#### TODOs
 - Have an example to consume a `.whl` distribution directly
-- Make a cpp library that is consumed by cpp, python, and javascript (through wasm)
 
-
+#### Bazel Commands
 ```
-bazel run //python/bazel/cmd/bazel_pybind_sample:binary
+bazel run //python/cmd/hello:binary
+
+bazel run //python/cmd/hello_with_dep:binary
+
+bazel run //python/cmd/hello_cpp:binary
 ```

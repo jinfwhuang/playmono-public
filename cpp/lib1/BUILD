@@ -62,10 +62,7 @@ pybind_extension(
     name = "pybind_module1",  # pybind_module.so
     srcs = glob([
         "pybind_module1.cpp",
-        # "lib.cpp",
-        # "lib.h",
     ]),
-    # hdrs = ["lib.h"],
     deps = [
         ":pybind_lib1"
     ]

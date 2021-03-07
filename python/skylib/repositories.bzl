@@ -1,4 +1,3 @@
-
 load("@rules_python//python:pip.bzl", "pip_install")
 
 def repositories():
