@@ -227,7 +227,7 @@ go_register_toolchains()
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()
 
-load("//:golang/skydeps/go_repositories.bzl", "go_repositories")
+load("//golang/skylib:go_repositories.bzl", "go_repositories")
 go_repositories()
 
 

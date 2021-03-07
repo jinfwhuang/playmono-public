@@ -6,11 +6,8 @@ package(default_visibility = ["//visibility:public"])
 
 go_binary(
     name = "binary",
-    embed = ["//cpp/lib1:go_lib"],
     deps = ["//cpp/lib1:go_lib"],
     srcs = [
         "main.go",
     ],
 )
-
-

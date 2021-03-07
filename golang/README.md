@@ -1,16 +1,17 @@
+#### bazel commands
+```
+# Run a web server
+bazel run //golang/cmd/helloworld:helloworld
+
+# Run a web server inside docker
+bazel run //golang/cmd/helloworld:image
+
+# Run a program that uses c++ code
+bazel run //golang/cmd/cgo-lib:binary
+```
 
 
-reference directory structure
-
-git@github.com:kubernetes/kubernetes.git
-
-
-# directory structure
-https://github.com/golang-standards/project-layout
-
-
-
-
-# running c code from go 
-https://karthikkaranth.me/blog/calling-c-code-from-go/
-
+#### go tooling
+```
+go run cmd/helloworld/helloworld.go
+```
