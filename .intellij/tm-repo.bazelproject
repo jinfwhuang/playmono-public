@@ -1,0 +1,26 @@
+# This file is used by the Bazel plugin for IntelliJ IDEA. It provides extra Bazel configuration such as ignored
+# directories/targets and cli flags. This file needs to be imported into your personal project view to take effect.
+#
+# Documentation: https://ij.bazel.build/docs/project-views.html
+
+directories:
+  .
+  -bazel-bin
+  -bazel-genfiles
+  -bazel-out
+  -bazel-playmono
+  -bazel-testlogs
+  -atmp
+  -.git
+
+targets:
+  //jvm/...
+
+build_flags:
+  # Any additional bazel options to run from intellij here
+
+# test_sources:
+#  javatests/*
+#  */src/test/java/*
+#  */src/it/java/*
+

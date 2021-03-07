@@ -1,0 +1,129 @@
+load("@npm_skylib//@bazel/typescript:index.bzl", "ts_project")
+load("@npm_skylib//http-server:index.bzl", "http_server")
+load("@npm_skylib//sass:index.bzl", "sass")
+load("@npm_skylib//webpack-cli:index.bzl", webpack = "webpack_cli")
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_image",
+    "container_layer",
+)
+
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+sass(
+    name = "styles",
+    outs = ["src/styles.css"],
+    args = [
+        "$(execpath src/styles.scss)",
+        "$(execpath src/styles.css)",
+    ],
+    data = ["src/styles.scss"],
+)
+
+ts_project(
+    # # Experimental: Start a tsc daemon to watch for changes to make recompiles faster.
+    # supports_workers = True,
+    deps = [
+        # "@npm_skylib//@types",
+        # "@npm_skylib//csstype",
+        "@npm_skylib//:node_modules",
+    ],
+)
+
+webpack(
+    name = "bundle",
+    outs = ["app.bundle.js"],
+    args = [
+        "$(execpath src/index.js)",
+        "--config",
+        "$(execpath webpack.config.js)",
+        "-o",
+        "$@",
+    ],
+    data = [
+        "src/styles.css", # generated from ts_project
+        "src/index.js",  # generated from ts_project
+        "webpack.config.js",
+        "@npm_skylib//:node_modules" # See bazel-playmono/external/npm_skylib/BUILD.bazel
+    ],
+)
+
+# Note, on Windows you need `--enable_runfiles`
+http_server(
+    name = "server",
+    data = [
+        "app.bundle.js", # generate by webpack
+        "index.html",  # A simple file
+    ],
+    templated_args = ["nodejs/hello_react"],
+)
+
+pkg_tar(
+    name = "nodejs_app",
+    package_dir = "/nodejs_app",
+    strip_prefix = ".",
+    srcs = [
+        "entrypoint.sh",
+
+        "app.bundle.js",
+        "index.html",
+        "src/index.js",
+    ],
+    visibility = ["//visibility:public"]
+)
+
+# Understand how the files are structured inside a docker image
+
+"""
+root@dd5724d8bd90:/nodejs_app# pwd
+/nodejs_app
+root@dd5724d8bd90:/nodejs_app# ls -larth
+total 152K
+-r-xr-xr-x 1 root root  266 Jan  1  1970 index.js
+-r-xr-xr-x 1 root root    0 Jan  1  1970 index.html
+-r-xr-xr-x 1 root root 133K Jan  1  1970 app.bundle.js
+drwxr-xr-x 1 root root 4.0K Mar  3 16:09 ..
+drwxr-xr-x 1 root root 4.0K Mar  3 16:09 .
+"""
+
+container_image(
+    name = "image",
+    base = "@alpine_nodejs//image",
+    workdir = "/nodejs_app",
+    tars = [
+        ":nodejs_app",
+    ],
+    visibility = ["//visibility:public"],
+
+    legacy_run_behavior = False,  # Make this image runnable
+
+    # entrypoint = "sleep 4000",
+    entrypoint = [
+        "./entrypoint.sh"
+    ],
+    # cmd = [
+    #     "--config=apps/docengineservice/configs/config.yaml",
+    # ],
+    env = {
+        # "SSL": "true",
+    },
+
+    # Exposed port locally only.
+    # This flag is ignored when the image is deployed in a k8s pod.
+    docker_run_flags = "-i --rm --publish=7000:7000",  
+)
+
+# testing only
+genrule(
+    name = "foo",
+    srcs = [
+        "app.bundle.js",
+        "index.html",
+        "index.js",
+    ],
+    executable = True,
+    outs = [
+        "aaa.txt"
+    ],
+    cmd = "ls -larth > $@",
+)

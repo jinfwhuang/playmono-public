@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+	],
+	"settings": {
+		"files.exclude": {
+			"**/node_modules": false,
+		},
+		"editor.codeActionsOnSave": {
+			"source.fixAll": false
+		},
+		"[json]": {
+			"editor.formatOnSave": false
+		},
+		"[go]": {
+			"editor.formatOnSave": false,
+    },
+	}
+}

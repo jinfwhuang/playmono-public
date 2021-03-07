@@ -1,0 +1,8 @@
+
+
+
+
+```
+bazel run :binary
+```
+

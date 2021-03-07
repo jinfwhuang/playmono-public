@@ -1,0 +1,12 @@
+{
+    "[json]": {
+        "editor.formatOnSave": false
+    },
+    "[go]": {
+        "editor.formatOnSave": false,
+    },
+    "files.exclude": {
+        "**/node_modules": false,
+        "**/*bazel*/": false,
+    },
+}
