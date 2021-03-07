@@ -31,9 +31,9 @@ See [golang readme](golang/README.md).
 
 
 #### java
-The best part of using go in Bazel is that go tooling remains more or less intact. The `golang` directory setup is the same as any other go project. The advantages of using Bazel instead of go build tool are still many: incremental builds, exact control of what goes into libraries, and docker images building.
+Bazel offers excellent support for Java. The [maven rule]](https://github.com/bazelbuild/rules_jvm_external) has made using Maven dependencies really easy. For any large java project, Bazel offers a far better experience than Maven. Even as my personal playground, setting up Bazel in Java has avoid a lot of versioning and library dependencies issues. All of my java codes have been converted to Bazel builds. Even codes that are more than 10 years work well with new Java codes I am writing. It has been a joy to finally standardize and revive all of codes that are placed in their own isolated corners.
 
-See [golang readme](golang/README.md).
+See [java examples](jvm/README.md).
 
 
 #### python
