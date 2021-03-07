@@ -38,11 +38,15 @@ See [java examples](jvm/README.md). All java third party dependencies are listed
 ### python
 Instead of using virtual envs, Bazel allows us to defind and build python interpreter as part of its toolchain.
 
-See [python examples](jvm/README.md). All python third party dependencies are listed in a [single location](python/skylib/requirements.txt).
+See [python examples](jvm/README.md). All python third party dependencies are listed in a [requirements.txt](python/skylib/requirements.txt) file.
 
 
 ### nodejs
-TODO
+The biggest challenge of using Bazel to build javascript projects is doing so would break the npm/yarn tooling. This is serious shortcoming compared to how Bazel and go tooling work interchangebly. In python and Java, however, Bazel tooling by itsel feels sufficient. But in javascript, all the debugging and IDE support only work well if the package.json file and node_modules folder structure are in place.
+
+The obvious solution is to add npm/yarn workspace support to rules_nodejs. See an open [issue](https://github.com/bazelbuild/rules_nodejs/issues/266).
+
+See [nodejs examples](jvm/README.md). In theory, all third party dependencies could be put in a single [package.json](nodejs/skylib/package.json) file. In practice, if I want to maintain the ability to continue using npm/yarn tooling, I would create a separate package.json for a particular package; see the project [hello-dep](nodejs/cmd/hello-dep).
 
 
 ## Docker Images and Deloyment Manifests

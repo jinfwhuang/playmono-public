@@ -1,6 +1,6 @@
 {
     "private": true,
-    "devDependencies": {
+    "dependencies": {
         "@bazel/buildifier": "^4.0.0",
         "@bazel/ibazel": "^0.14.0",
         "@bazel/typescript": "^3.2.1",

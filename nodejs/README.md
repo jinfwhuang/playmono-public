@@ -3,6 +3,7 @@
 ```bash
 # Run an example nodejs server
 bazel run //nodejs/cmd/example-server:binary
+
 # Run an image
 bazel run --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 //nodejs/cmd/example-server:image
 

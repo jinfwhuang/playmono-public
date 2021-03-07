@@ -24,8 +24,6 @@ ts_project(
     # # Experimental: Start a tsc daemon to watch for changes to make recompiles faster.
     # supports_workers = True,
     deps = [
-        # "@npm_skylib//@types",
-        # "@npm_skylib//csstype",
         "@npm_skylib//:node_modules",
     ],
 )
@@ -55,7 +53,7 @@ http_server(
         "app.bundle.js", # generate by webpack
         "index.html",  # A simple file
     ],
-    templated_args = ["nodejs/hello_react"],
+    templated_args = ["nodejs/cmd/hello_react"],
 )
 
 pkg_tar(
@@ -101,13 +99,6 @@ container_image(
     entrypoint = [
         "./entrypoint.sh"
     ],
-    # cmd = [
-    #     "--config=apps/docengineservice/configs/config.yaml",
-    # ],
-    env = {
-        # "SSL": "true",
-    },
-
     # Exposed port locally only.
     # This flag is ignored when the image is deployed in a k8s pod.
     docker_run_flags = "-i --rm --publish=7000:7000",  
