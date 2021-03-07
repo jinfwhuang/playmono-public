@@ -1,16 +1,21 @@
 
+## Playgound Monorepo Template
+See my [blog post](https://jinsnotes.com/2020-12-29-playground-monorepo) for more information on how I use my playground monorepo. This is a template and examples.
+
+I use a playground monorepo for all of my personal projects. The reason to use a monorepo for my personal project is similar in many ways to why a software company would want migrate to a single repo. I use different languages depending on the hobby and question I am tackling. I do not want to spend time opening and closing all the editor windows. I want to share codes among different projects. I want to centralize my documentations. I want to have a familiar editor homepage for all my codes and writings. A playground monorepo has been a huge success for my personal productivity for many years.
+
+Here is a template that I extracted out from my playground monorepo.
 
 ## Features
-- Support multiple languages
-- Support building for multiple platforms
+- Support multiple languages: c++, go, java, python, javascript
 - Cross compilation between languages
-- Building libraries, binaries, and docker images
-- All in Bazel
+- Building libraries, binaries, and docker images all in Bazel
+- Centralized documentations and research notes
 
 
 ## Examples
 
-Bazel has varying degree of support different languages. One of the best example is go. It allows us to maintain almost all of the features of the native go build tool in the form of the `go` cli. However, not all languages have a native build tool. In the example of Java, building with Bazel is far better than the other tools.
+Bazel has varying degree of support different languages. One of the best example is go. It allows us to maintain almost all of the features of the native go build tool in the form of the `go` cli. However, not all languages have a native build tool. In the example of Java, building with Bazel is far better than the other tools, such as Maven or Ant.
 
 For each language setup in this repo, I attempt to setup such that each language
 - Has a single place to define third party libaries. All external dependencies have a single version in the monorepo.
@@ -41,12 +46,12 @@ Instead of using virtual envs, Bazel allows us to defind and build python interp
 See [python examples](jvm/README.md). All python third party dependencies are listed in a [requirements.txt](python/skylib/requirements.txt) file.
 
 
-### nodejs
+### javascript and typescript
 The biggest challenge of using Bazel to build javascript projects is doing so would break the npm/yarn tooling. This is serious shortcoming compared to how Bazel and go tooling work interchangebly. In python and Java, however, Bazel tooling by itsel feels sufficient. But in javascript, all the debugging and IDE support only work well if the package.json file and node_modules folder structure are in place.
 
 The obvious solution is to add npm/yarn workspace support to rules_nodejs. See an open [issue](https://github.com/bazelbuild/rules_nodejs/issues/266).
 
-See [nodejs examples](jvm/README.md). In theory, all third party dependencies could be put in a single [package.json](nodejs/skylib/package.json) file. In practice, if I want to maintain the ability to continue using npm/yarn tooling, I would create a separate package.json for a particular package; see the project [hello-dep](nodejs/cmd/hello-dep).
+See [nodejs examples](nodjes/README.md). In theory, all third party dependencies could be put in a single [package.json](nodejs/skylib/package.json) file. In practice, if I want to maintain the ability to continue using npm/yarn tooling, I would create a separate package.json for a particular package; see the project [hello-dep](nodejs/cmd/hello-dep).
 
 
 ## Docker Images and Deloyment Manifests
@@ -54,7 +59,7 @@ Bazel [rules_docker](https://github.com/bazelbuild/rules_docker) makes the trans
 
 While this feature is not used very often in my personal playground, I do use it to deploy personal projects. I keep a tiny k8s cluster up running in AWS, costing me about $30-$50 a month. I previously had some long running services that I ran in EC2, converting them into k8s deployment covered my operating costs. Now that is setup, instead of having to deal with terraform to deploy some toy projects, I deploy to my personal k8s cluster by one bazel command. It is a ton of fun to write and deploy without having to think about infra.
 
-
+<a name="k8s_deploy"></a>
 ## Fun Next Steps:
 - Create an example where a browser app uses the c code in `cpp/lib1/lib.cpp` through wasm.
 - Create an example where java also uses the c code in `cpp/lib1/lib.cpp`.
