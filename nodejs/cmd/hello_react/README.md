@@ -6,13 +6,10 @@ yarn.lock
 
 # bazel command
 ```bash
-bazel build //nodejs/example-server:bundle
-bazel run //nodejs/example-server:server
-bazel run //nodejs/example-server:image
-
-
+bazel build //nodejs/cmd/hello_react:bundle
+bazel run //nodejs/cmd/hello_react:server
+bazel run --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 //nodejs/cmd/hello_react:image
 ```
-
 
 
 # debugging

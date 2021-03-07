@@ -1,19 +1,19 @@
 
+# Bazel Command
+```bash
+# Run an example nodejs server
+bazel run //nodejs/cmd/example-server:binary
+# Run an image
+bazel run --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 //nodejs/cmd/example-server:image
 
-https://github.com/alexeagle/demo-bazel-multipackage
+# Run an react app
+bazel run //nodejs/cmd/hello_react:server
 
-
-
-
+# Run the react app image
+bazel run --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 //nodejs/cmd/hello_react:server
 ```
-bazel run //nodejs/a:binary
-
-bazel run //nodejs/b:binary
 
 
-bazel run --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 //nodejs/b:image
-
-```
 
 #### summary
 - No support for yarn workspaces

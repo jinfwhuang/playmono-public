@@ -7,7 +7,7 @@ nodejs_binary(
         "@npm_hello_dep//color",
         "@npm_hello_dep//colors",
         "@npm_hello_dep//chalk",
-        "//nodejs/hello-lib:lib",
+        "//nodejs/pkg/hello-lib:lib",
     ],
     entry_point = ":main.js",
 )
@@ -15,6 +15,4 @@ nodejs_binary(
 nodejs_image(
     name = "image",
     binary = ":binary",
-    # base = "@alpine_nodejs//image",
-    base = "@nodejs_image_base//image",
 )
