@@ -88,3 +88,24 @@ py_binary(
     ],
 )
 
+# ------------------------------
+# Compile to WASM
+# ------------------------------
+load("@emsdk//emscripten_toolchain:wasm_rules.bzl", "wasm_cc_binary")
+
+cc_binary(
+    name = "embind_binary",
+    linkopts = ["--bind"],
+    srcs = glob([
+        "embind.cpp",
+    ]),
+    deps = [
+        ":lib1"
+    ]
+
+)
+
+wasm_cc_binary(
+    name = "embind_wasm",
+    cc_target = ":embind_binary",
+)
